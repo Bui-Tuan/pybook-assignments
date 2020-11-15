@@ -116,16 +116,19 @@ def solve(grid: List[List[str]]) -> Optional[List[List[str]]]:
 
 def check_solution(solution: List[List[str]]) -> bool:
     res = True
-    for i in range(9):
-        for j in range(9):
-            a = set(solution[i])
-            b = []
-            for k in range(9):
-                b.append(solution[k][j])
-            b = set(b)
-            c = set(get_block(solution, (i, j)))
-            if len(a) != 9 or len(b) != 9 or len(c) != 9:
-                res = False
+    if len(find_empty_positions(solution)) != 0:
+        res = False
+    else:
+        for i in range(9):
+            for j in range(9):
+                a = set(solution[i])
+                b = []
+                for k in range(9):
+                    b.append(solution[k][j])
+                b = set(b)
+                c = set(get_block(solution, (i, j)))
+                if len(a) != 9 or len(b) != 9 or len(c) != 9:
+                    res = False
     return res
 
 
